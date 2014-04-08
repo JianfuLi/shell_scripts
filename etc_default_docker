@@ -7,7 +7,7 @@
 DOCKER_OPTS="-dns 8.8.8.8 -dns 8.8.4.4 -H tcp://127.0.0.1:4243 -H unix://var/run/docker.sock"
 
 # If you need Docker to use an HTTP proxy, it can also be specified here.
-export http_proxy="https://127.0.0.1:8087/"
+#export http_proxy="https://127.0.0.1:8087/"
 
 # This is also a handy place to tweak where Docker's temporary files go.
 #export TMPDIR="/mnt/bigdrive/docker-tmp"
