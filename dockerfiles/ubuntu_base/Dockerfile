@@ -1,6 +1,7 @@
 # php satis dockerfile
 FROM ubuntu:12.04
 MAINTAINER me@ljf.me
-RUN wget -O /etc/apt/sources.list http://mirror.ubuntu9.com/topmirror/sourceslist/topstable?`lsb_release -c | cut -f2`
+
+ADD ./etc_apt_sources.list /etc/apt/sources.list
 RUN apt-get update -y
 RUN apt-get upgrade -y
