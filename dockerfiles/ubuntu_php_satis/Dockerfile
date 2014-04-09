@@ -16,6 +16,6 @@ RUN apt-get install php5-cli -y
 RUN apt-get install php5-xdebug -y
 RUN apt-get install curl -y
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin
-RUN svn export https://github.com/composer/satis /var/www/ --force
+RUN svn export https://github.com/composer/satis/trunk /var/www/ --force
 
 EXPOSE 80
