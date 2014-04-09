@@ -17,5 +17,8 @@ RUN apt-get install php5-xdebug -y
 RUN apt-get install curl -y
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin
 RUN svn export https://github.com/composer/satis/trunk /var/www/ --force
+RUN addgroup satis
+RUN useradd -g satis -d /var/www/ satis
+RUN chown -R satis:satis /var/www/
 
 EXPOSE 80
