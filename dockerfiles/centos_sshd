@@ -1,0 +1,28 @@
+FROM centos:centos6
+MAINTAINER me@ljf.me
+
+#Add epel repo
+RUN rpm -ivh http://mirror.overthewire.com.au/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+
+#Update system
+RUN yum update -y
+
+#Install openssh
+RUN yum install -y openssh-server openssh-clients 
+
+#Modify sshd_config
+RUN sed -ri 's/#PermitRootLogin yes/PermitRootLogin yes/g' /etc/ssh/sshd_config
+RUN sed -ri 's/GSSAPIAuthentication yes/GSSAPIAuthentication no/g' /etc/ssh/sshd_config
+RUN sed -ri 's/GSSAPICleanupCredentials yes/GSSAPICleanupCredentials no/g' /etc/ssh/sshd_config
+RUN sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config
+RUN sed -ri 's/#UsePAM no/UsePAM no/g' /etc/ssh/sshd_config
+
+#Start sshd to generating SSH RSA/DSA host key
+RUN /etc/init.d/sshd start
+
+#Change root password
+RUN echo 'root:root' | chpasswd 
+
+EXPOSE 22
+
+CMD ["/usr/sbin/sshd", "-D"]
